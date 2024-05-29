@@ -3,4 +3,4 @@ streamlit_mic_recorder
 streamlit
 librosa
 transformers
-torchcrf
+TorchCRF
