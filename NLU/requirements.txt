@@ -1,0 +1,8 @@
+torch
+transformers
+seqeval
+pytorch-crf
+tensorflow
+sentencepiece
+tensorboard
+numpy

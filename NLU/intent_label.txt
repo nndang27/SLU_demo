@@ -1,0 +1,29 @@
+UNK
+bật nhạc
+bật thiết bị
+giảm mức độ của thiết bị
+giảm nhiệt độ của thiết bị
+giảm âm lượng của thiết bị
+giảm độ sáng của thiết bị
+gọi taxi
+gợi ý phim
+gợi ý địa điểm
+hỏi thông tin
+hủy hoạt cảnh
+kiểm tra tình trạng thiết bị
+kích hoạt cảnh
+mở thiết bị
+tra công thức nấu ăn
+tra cứu lịch
+tra cứu thời tiết
+tra cứu đường đi
+tăng mức độ của thiết bị
+tăng nhiệt độ của thiết bị
+tăng âm lượng của thiết bị
+tăng độ sáng của thiết bị
+tắt thiết bị
+xóa lịch
+đóng thiết bị
+đặt lịch
+đặt vé
+đặt đồ ăn
