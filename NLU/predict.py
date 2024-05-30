@@ -102,6 +102,7 @@ def predict_nlu(string, file_path, model_dir, slot_path, intent_path):
         model = MODEL_CLASSES[args.model_type][1].from_pretrained(
             model_dir, args=args, intent_label_lst = get_intent_labels(intent_path), slot_label_lst=get_slot_labels(slot_path)
         )
+        print("Using2: ", device)
         model.to(device)
         model.eval()
     except Exception:
@@ -167,7 +168,7 @@ def predict_nlu(string, file_path, model_dir, slot_path, intent_path):
             line = line + "[{}:{}] ".format(word, pred)
     print("<{}> -> {}\n".format(intent_label_lst[intent_preds], line.strip()))
 
-    return "<{}> -> {}\n".format(intent_label_lst[intent_preds], line.strip())
+    return '<{}> -> {}'.format(intent_label_lst[intent_preds], line.strip())
 
 
 # slot_path = "E:/Data_SLU_journal/STREAMLIT_SLU/streamlit_app/NLU/slot_label.txt"

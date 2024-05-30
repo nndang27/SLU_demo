@@ -1,5 +1,6 @@
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 import librosa
+import torch
 # import soundfile as sf
 # file_path = "E:/Data_SLU_journal/Audio_synthetic_FreeVC/vi_freevc/0.wav"
 def infer_PhoWhisper(file_path):
@@ -9,7 +10,9 @@ def infer_PhoWhisper(file_path):
     # Load the Whisper model in Hugging Face format:
     processor = WhisperProcessor.from_pretrained("nndang/PhoWhisper_streamlit_demo")
     model = WhisperForConditionalGeneration.from_pretrained("nndang/PhoWhisper_streamlit_demo")
-
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print("Using: ",device)
+    model.to(device)
     # Use the model and processor to transcribe the audio:
     input_features = processor(
         waveform, sampling_rate=sampling_rate, return_tensors="pt"

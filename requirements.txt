@@ -3,6 +3,11 @@ streamlit_mic_recorder
 streamlit
 librosa
 transformers
+fastapi
+uvicorn
+python-multipart
+pyngrok
+nest-asyncio
 seqeval
 pytorch-crf
 tensorflow
