@@ -39,9 +39,9 @@ def whisper_stt( start_prompt="Start recording", stop_prompt="Stop recording", j
             while not success and err < 3:  # Retry up to 3 times in case of OpenAI server error.
                 try: # http://localhost:8002
                     # API PHOWHISPER  
-                    res = requests.post(url = "https://c7ed-118-70-168-84.ngrok-free.app/asr/phowhisper/small", data = audio_bio)
+                    res = requests.post(url = "https://18d3-118-70-168-84.ngrok-free.app/asr/phowhisper/small", data = audio_bio)
                     print("TEXT: ",  res.text)
-                    transcript = requests.post(url = "https://c7ed-118-70-168-84.ngrok-free.app/nlu/jointidsf/phobert", params ={"transcript": res.text} )
+                    transcript = requests.post(url = "https://18d3-118-70-168-84.ngrok-free.app/nlu/jointidsf/phobert", params ={"transcript": res.text} )
                     print("transcript: ", transcript.text)
                     # st.session_state.openai_client.audio.transcriptions.create(
                     #     model="whisper-1",
