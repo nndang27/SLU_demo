@@ -4,15 +4,29 @@ from streamlit_mic_recorder import mic_recorder
 import streamlit as st
 import io
 # from openai import OpenAI
-
+import hydralit_components as hc
 import os
 
 import requests
 
-def whisper_stt( start_prompt="Start recording", stop_prompt="Stop recording", just_once=False,
+API_asr_dict = {"PhoWhisper(small)": "asr/phowhisper/small",
+            "PhoWhisper(base)": "asr/phowhisper/base",
+            "Whisper": "asr/whisper/small",
+            "Wav2Vec": "asr/wav2vec"}
+
+API_nlu_dict = {"JointIDSF_PhoBert": "nlu/jointidsf/phobert",
+            "JointIDSF_XLMR": "nlu/jointidsf/xlm",
+            "JointBERT_PhoBert": "nlu/jointbert/phobert",
+            "JointBERT_XLMR": "nlu/jointbert/xlm",
+            "DIET_PhoBert": "nlu/diet/phobert",
+            "DIET_XLMR": "nlu/diet/xlm"}
+
+def whisper_stt(ASR_name, NLU_name, start_prompt="Start recording", stop_prompt="Stop recording", just_once=False,
                use_container_width=False, callback=None, args=(), kwargs=None, key=None):
     # if not 'openai_client' in st.session_state:
     #     st.session_state.openai_client = OpenAI(api_key=openai_api_key or os.getenv('OPENAI_API_KEY'))
+    print("ASR: ", ASR_name)
+    print("NLU: ", NLU_name)
     if not '_last_speech_to_text_transcript_id' in st.session_state:
         st.session_state._last_speech_to_text_transcript_id = 0
     if not '_last_speech_to_text_transcript' in st.session_state:
@@ -39,15 +53,14 @@ def whisper_stt( start_prompt="Start recording", stop_prompt="Stop recording", j
             while not success and err < 3:  # Retry up to 3 times in case of OpenAI server error.
                 try: # http://localhost:8002
                     # API PHOWHISPER  
-                    res = requests.post(url = "https://452b-34-168-208-4.ngrok-free.app/asr/phowhisper/small", data = audio_bio)
-                    print("TEXT: ",  res.text)
-                    transcript = requests.post(url = "https://452b-34-168-208-4.ngrok-free.app/nlu/jointidsf/phobert", params ={"transcript": res.text} )
-                    print("transcript: ", transcript.text)
-                    # st.session_state.openai_client.audio.transcriptions.create(
-                    #     model="whisper-1",
-                    #     file=audio_bio,
-                    #     language=language
-                    # )
+                    with hc.HyLoader('Loading ...',hc.Loaders.standard_loaders, height=10):
+                        # time.sleep(5)  http://127.0.0.1:8000
+                        res = requests.post(url = f"https://6292-43-239-223-87.ngrok-free.app/{API_asr_dict[ASR_name]}", data = audio_bio)
+                    
+                        print("TEXT: ",  res.text)
+                        transcript = requests.post(url = f"https://6292-43-239-223-87.ngrok-free.app/{API_nlu_dict[NLU_name]}", params ={"transcript": res.text} )
+                        print("transcript: ", transcript.text)
+
                 except Exception as e:
                     print(str(e))  # log the exception in the terminal
                     err += 1

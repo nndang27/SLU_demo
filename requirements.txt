@@ -15,3 +15,6 @@ sentencepiece
 tensorboard
 numpy
 tqdm
+streamlit_option_menu
+hydralit-components
+p_tqdm
