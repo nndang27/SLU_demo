@@ -55,10 +55,10 @@ def whisper_stt(ASR_name, NLU_name, start_prompt="Start recording", stop_prompt=
                     # API PHOWHISPER  
                     with hc.HyLoader('Loading ...',hc.Loaders.standard_loaders, height=10):
                         # time.sleep(5)  http://127.0.0.1:8000
-                        res = requests.post(url = f"https://6292-43-239-223-87.ngrok-free.app/{API_asr_dict[ASR_name]}", data = audio_bio)
+                        res = requests.post(url = f"https://d2cc-43-239-223-87.ngrok-free.app/{API_asr_dict[ASR_name]}", data = audio_bio)
                     
                         print("TEXT: ",  res.text)
-                        transcript = requests.post(url = f"https://6292-43-239-223-87.ngrok-free.app/{API_nlu_dict[NLU_name]}", params ={"transcript": res.text} )
+                        transcript = requests.post(url = f"https://d2cc-43-239-223-87.ngrok-free.app/{API_nlu_dict[NLU_name]}", params ={"transcript": res.text} )
                         print("transcript: ", transcript.text)
 
                 except Exception as e:
